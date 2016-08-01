@@ -54,6 +54,10 @@ public class PrimaryController {
         WebEngine engine = myweb.getEngine();
         engine.load(homeAddress);
         
+        url.setOnAction(event -> {
+        	engine.load(url.getText());
+        });
+        
         home.setOnAction(event -> {
         	url.setText(homeAddress);
         	engine.load(homeAddress);
