@@ -21,12 +21,25 @@ public class EmbeddedTomcatConfig implements EmbeddedServletContainerCustomizer{
 			@Override
 			public void customize(Context context) {
 				
+				/*
+				 * Welcome File
+				 */
+				context.addWelcomeFile("index.jsp");
+				
 				ErrorPage error404Page = new ErrorPage();
 				
 				error404Page.setErrorCode(404);
 				error404Page.setLocation("/WEB-INF/error/404.jsp");
 				
-				context.addErrorPage(error404Page);
+				
+				//context.addErrorPage(error404Page);
+
+				
+				ErrorPage errorArithmeticPage = new ErrorPage();
+				errorArithmeticPage.setExceptionType("java.lang.ArithmeticException");
+				errorArithmeticPage.setLocation("/WEB-INF/error/arithmetic.jsp"); 	// Exception이 tomcat까지 올라오면 이게 실행된다.
+				
+				context.addErrorPage(errorArithmeticPage);
 				
 			}
 		});
